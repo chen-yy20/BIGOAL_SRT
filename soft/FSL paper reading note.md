@@ -41,6 +41,30 @@ using P on T, to advance E with supervised learning.
   Supervised learning are methods of **classification and regression**, while unsupervised learning is about **clustering and dimensionality reduction**. AI doesn't know what the samples really are but they can recognize which class they belong to. Using K-neighbors to find the "core" of data or using PCA to find out the main information.  
 
   
+  
+  ### PU learning 
+  
+  Positive- Unlabeled learning 为只有正例和无监督样本的情况下进行二分类。
+  
+  ### Attention is all you need 
+  
+  [paper](https://arxiv.org/pdf/1706.03762.pdf) of attention mechanism and the Transformer model. 
+  
+  ### Auto ML
+  
+  **Auto ML **is a way to automize the feature engineering, model constructing and hyperparameter optimization. 
+  
+  > Instead of spending days on hyperparameter tuning, a data scientist could instead automate this process on multiple types of models concurrently, and then subsequently test which was most performant. 
+  
+  * **data preprocessing** 
+  
+  * **Feature engineering** is a way to choose the proper feature which can denote the data well. It generalize the feature from the original data and encode them. 
+  * **model construction** find the proper model to learn
+  * **hyperparameter optimization** find a proper hyperparameter. 
+  
+  
+  
+  
 
 ## Data
 
@@ -106,6 +130,24 @@ FSL tend to use prior knowledge to constrain the hypothesis space $H$ into a sma
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200318111855496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMTQ2OTM3,size_16,color_FFFFFF,t_70)
 
   > how can it become few-shot?  Even Zero-shot?
+  >
+  > What we've learned? $f_\phi$ is the ProtoNet which can embed a sample into a Prototype. 
 
+### Few shot as a Meta learning problem
 
+#### What's learning to learn
 
+1. effectively reuse data on other tasks. Tasks become the sample of learning to learn. Meta learning try to improve the adaptation ability to make the net behave well on different tasks.
+2. **replace manual engineering **of architecture, hyperparameters, etc.
+3. learn to quickly adapt to unexpected scenarios
+4. learn how to learn with **weak supervision**
+
+#### MAML (Model-Agnostic Meta-learning)
+
+![img](https://img2020.cnblogs.com/blog/1027447/202107/1027447-20210708151756900-1232211194.png)
+
+Goal: Making $f_\theta$ a net to adapt all of the tasks with few shot. 
+
+inner loop: using the **support set** of all the tasks to train $\theta → \theta'$ 
+
+outer loop: using the **query set** of all the tasks and $\theta'$ to really update $\theta$ and finally minimize the loss of all the query sets in the tasks  
